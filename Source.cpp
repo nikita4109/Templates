@@ -1,8 +1,13 @@
 #include <iostream>
+#include "mint.h"
 
 int main()
 {
-	std::cout << "Hello Git!\n";
+	mint a, b;
+	std::cin >> a >> b;
+	std::cout << a + b << std::endl;
+	std::cout << a * b << std::endl;
+	std::cout << a / b << std::endl;
 
 	return 0;
 }
