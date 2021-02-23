@@ -3,11 +3,9 @@
 
 int main()
 {
-	mint a, b;
-	std::cin >> a >> b;
-	std::cout << a + b << std::endl;
-	std::cout << a * b << std::endl;
-	std::cout << a / b << std::endl;
+	mint a = 5;
+	if (a) a = 1;
+	std::cout << a << std::endl;
 
 	return 0;
 }
