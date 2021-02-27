@@ -1,10 +1,11 @@
 #include <iostream>
 
+template<typename T>
 class segment_tree
 {
 	public:
 
-	segment_tree(int l, int r)
+	segment_tree(T l, T r)
 	{
 		left = l;
 		right = r;
@@ -18,7 +19,7 @@ class segment_tree
 		}
 	}
 
-	void add(int position, int value)
+	void add(int position, T value)
 	{
 		sum += value;
 
@@ -32,7 +33,7 @@ class segment_tree
 		}
 	}
 
-	int get(int l, int r)
+	T get(int l, int r)
 	{
 		if (left > r || right < l) return 0;
 		if (left >= l && right <= r) return sum;
