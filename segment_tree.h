@@ -1,11 +1,9 @@
-#include <iostream>
-
 template<typename T>
-class segment_tree
+class SegmentTree
 {
 	public:
 
-	segment_tree(T l, T r)
+	SegmentTree(T l, T r)
 	{
 		left = l;
 		right = r;
@@ -14,12 +12,12 @@ class segment_tree
 		if (l != r)
 		{
 			int middle = (l + r) / 2;
-			leftVertex = new segment_tree(l, middle);
-			rightVertex = new segment_tree(middle + 1, r);
+			leftVertex = new SegmentTree(l, middle);
+			rightVertex = new SegmentTree(middle + 1, r);
 		}
 	}
 
-	void add(int position, T value)
+	void Add(int position, T value)
 	{
 		sum += value;
 
@@ -27,22 +25,22 @@ class segment_tree
 		{
 			int middle = (left + right) / 2;
 			if (middle >= position)
-				leftVertex->add(position, value);
+				leftVertex->Add(position, value);
 			else
-				rightVertex->add(position, value);
+				rightVertex->Add(position, value);
 		}
 	}
 
-	T get(int l, int r)
+	T operator () (int l, int r)
 	{
 		if (left > r || right < l) return 0;
 		if (left >= l && right <= r) return sum;
 
-		return leftVertex->get(l, r) + rightVertex->get(l, r);
+		return (*leftVertex)(l, r) + (*rightVertex)(l, r);
 	}
 
 	private:
 
 		int left, right, sum;
-		segment_tree *leftVertex = 0, *rightVertex = 0;
+		SegmentTree *leftVertex = 0, *rightVertex = 0;
 };
