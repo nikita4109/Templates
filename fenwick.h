@@ -1,5 +1,4 @@
 #include <vector>
-#include <iostream>
 
 template<typename T>
 class Fenwick
