@@ -8,21 +8,17 @@ class SegmentTree
 		left = l;
 		right = r;
 		sum = 0;
-
-		if (l != r)
-		{
-			int middle = (l + r) / 2;
-			leftVertex = new SegmentTree(l, middle);
-			rightVertex = new SegmentTree(middle + 1, r);
-		}
 	}
 
 	void Add(int position, T value)
 	{
 		sum += value;
 
-		if (leftVertex)
+		if (left != right)
 		{
+			if (!leftVertex)
+				createChildren();
+
 			int middle = (left + right) / 2;
 			if (middle >= position)
 				leftVertex->Add(position, value);
@@ -43,4 +39,11 @@ class SegmentTree
 
 		int left, right, sum;
 		SegmentTree *leftVertex = 0, *rightVertex = 0;
+
+	void createChildren()
+	{
+		int middle = (left + right) / 2;
+		leftVertex = new SegmentTree(left, middle);
+		rightVertex = new SegmentTree(middle + 1, right);
+	}
 };
