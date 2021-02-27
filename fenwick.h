@@ -13,7 +13,6 @@ public:
 
 	T operator () (int left, int right)
 	{
-		std::cout << left << " " << right << std::endl;
 		return getSum(right) - getSum(left - 1);
 	}
 
