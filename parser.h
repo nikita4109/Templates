@@ -32,7 +32,7 @@ public:
 		value = EvaluateSum();
 	}
 
-	int GetValue() const { return value; }
+	T GetValue() const { return value; }
 
 private:
 	std::vector<std::string> tokens;
