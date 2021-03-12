@@ -1,3 +1,5 @@
+#include <memory>
+
 template<typename T>
 class SegmentTree
 {
@@ -38,12 +40,12 @@ class SegmentTree
 	private:
 
 		int left, right, sum;
-		SegmentTree *leftVertex = 0, *rightVertex = 0;
+		std::unique_ptr<SegmentTree> leftVertex, rightVertex;
 
 	void createChildren()
 	{
 		int middle = (left + right) / 2;
-		leftVertex = new SegmentTree(left, middle);
-		rightVertex = new SegmentTree(middle + 1, right);
+		leftVertex = std::make_unique<SegmentTree>(left, middle);
+		rightVertex = std::make_unique<SegmentTree>(middle + 1, right);
 	}
 };
